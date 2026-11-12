@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayoub Mouslimov — BTS SIO SISR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#121820;
+    --bg-panel:#19212b;
+    --ink:#E9E7DD;
+    --ink-soft:#9AA5AF;
+    --accent:#5FB89C;
+    --accent-dim:#3C7C68;
+    --amber:#E8A34D;
+    --line:#28313c;
+    --mono:'JetBrains Mono', monospace;
+    --sans:'Inter', sans-serif;
+    --disp:'Space Grotesk', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.6;
+    font-size:16px;
+  }
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  .wrap{max-width:920px;margin:0 auto;padding:0 32px;}
+
+  /* ---- nav ---- */
+  header{
+    position:sticky;top:0;z-index:20;
+    background:rgba(18,24,32,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    height:64px;
+  }
+  .brand{
+    font-family:var(--mono);font-size:14px;color:var(--accent);
+    letter-spacing:0.02em;
+  }
+  .navlinks{display:flex;gap:28px;font-family:var(--mono);font-size:13px;}
+  .navlinks a{color:var(--ink-soft);}
+  .navlinks a:hover{color:var(--accent);text-decoration:none;}
+
+  /* ---- hero ---- */
+  .hero{padding:96px 0 72px;}
+  .prompt-line{
+    font-family:var(--mono);font-size:14px;color:var(--ink-soft);
+    margin-bottom:18px;
+  }
+  .prompt-line .caret{
+    display:inline-block;width:8px;height:16px;background:var(--accent);
+    vertical-align:-2px;margin-left:4px;
+    animation:blink 1s step-end infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+  h1.name{
+    font-family:var(--disp);
+    font-weight:700;
+    font-size:clamp(40px,6vw,64px);
+    line-height:1.05;
+    letter-spacing:-0.01em;
+  }
+  .role{
+    font-family:var(--disp);
+    font-size:clamp(18px,2.4vw,24px);
+    color:var(--accent);
+    margin-top:10px;
+    font-weight:500;
+  }
+  .hero-desc{
+    margin-top:24px;max-width:560px;
+    color:var(--ink-soft);font-size:16px;
+  }
+  .status-block{
+    margin-top:40px;
+    display:grid;grid-template-columns:repeat(3,1fr);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+  }
+  .status-item{
+    padding:16px 20px;border-right:1px solid var(--line);
+    background:var(--bg-panel);
+  }
+  .status-item:last-child{border-right:none;}
+  .status-label{
+    font-family:var(--mono);font-size:11px;color:var(--ink-soft);
+  }
+  .status-value{
+    font-family:var(--mono);font-size:14px;color:var(--ink);margin-top:4px;
+  }
+  .status-value.up{color:var(--accent);}
+
+  /* ---- section shell ---- */
+  section{padding:64px 0;border-top:1px solid var(--line);}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;margin-bottom:36px;
+  }
+  .section-num{
+    font-family:var(--mono);font-size:13px;color:var(--accent-dim);
+  }
+  h2{
+    font-family:var(--disp);font-size:28px;font-weight:600;
+  }
+
+  /* ---- about ---- */
+  .about-text{max-width:640px;color:var(--ink-soft);font-size:16px;}
+  .about-text p + p{margin-top:14px;}
+
+  /* ---- skills ---- */
+  .skill-groups{display:flex;flex-direction:column;gap:28px;}
+  .skill-group-title{
+    font-family:var(--mono);font-size:13px;color:var(--amber);
+    margin-bottom:12px;
+  }
+  .tag-row{display:flex;flex-wrap:wrap;gap:10px;}
+  .tag{
+    font-family:var(--mono);font-size:13px;
+    padding:6px 12px;border:1px solid var(--line);border-radius:4px;
+    color:var(--ink);background:var(--bg-panel);
+  }
+
+  /* ---- projects ---- */
+  .project{
+    border-left:2px solid var(--accent-dim);
+    padding:6px 0 6px 24px;margin-bottom:36px;
+    transition:border-color .2s;
+  }
+  .project:hover{border-left-color:var(--accent);}
+  .project-top{
+    display:flex;align-items:baseline;justify-content:space-between;
+    flex-wrap:wrap;gap:8px;
+  }
+  .project-name{font-family:var(--disp);font-size:20px;font-weight:600;}
+  .project-tag{font-family:var(--mono);font-size:12px;color:var(--ink-soft);}
+  .project-desc{color:var(--ink-soft);margin-top:8px;max-width:600px;}
+  .project-stack{
+    margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;
+  }
+  .project-stack span{
+    font-family:var(--mono);font-size:11px;color:var(--accent);
+    border:1px solid var(--accent-dim);padding:3px 8px;border-radius:3px;
+  }
+
+  /* ---- stage ---- */
+  .stage-card{
+    background:var(--bg-panel);border:1px solid var(--line);
+    border-radius:6px;padding:28px;max-width:640px;
+  }
+  .stage-card .stage-title{font-family:var(--disp);font-size:19px;font-weight:600;}
+  .stage-card .stage-meta{
+    font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-top:6px;
+  }
+  .stage-card p{margin-top:14px;color:var(--ink-soft);}
+
+  /* ---- contact ---- */
+  .contact-list{display:flex;flex-direction:column;gap:14px;max-width:420px;}
+  .contact-row{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 0;border-bottom:1px solid var(--line);
+  }
+  .contact-row .k{font-family:var(--mono);font-size:13px;color:var(--ink-soft);}
+  .contact-row .v{font-family:var(--mono);font-size:14px;}
+
+  footer{
+    padding:32px 0;border-top:1px solid var(--line);
+    font-family:var(--mono);font-size:12px;color:var(--ink-soft);
+    text-align:center;
+  }
+
+  @media (max-width:640px){
+    .status-block{grid-template-columns:1fr;}
+    .status-item{border-right:none;border-bottom:1px solid var(--line);}
+    .navlinks{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand">ayoub@sio:~$</div>
+    <div class="navlinks">
+      <a href="#about">profil</a>
+      <a href="#skills">compétences</a>
+      <a href="#projects">projets</a>
+      <a href="#stage">stage</a>
+      <a href="#contact">contact</a>
+    </div>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" style="border-top:none;">
+    <div class="prompt-line">whoami<span class="caret"></span></div>
+    <h1 class="name">Mouslimov Ayoub</h1>
+    <div class="role">Étudiant BTS SIO — option SISR</div>
+    <p class="hero-desc">
+      En 2ème année au lycée Marie Curie de Tarbes, je m'oriente vers l'administration des systèmes et des réseaux.
+      J'aime comprendre comment une infrastructure tient debout — du câble Ethernet au pare-feu — et je complète cette base
+      par des projets de développement web.
+    </p>
+    <div class="status-block">
+      <div class="status-item">
+        <div class="status-label">formation</div>
+        <div class="status-value">BTS SIO · SISR · 2ᵉ année</div>
+      </div>
+      <div class="status-item">
+        <div class="status-label">établissement</div>
+        <div class="status-value">Lycée Marie Curie, Tarbes</div>
+      </div>
+      <div class="status-item">
+        <div class="status-label">statut</div>
+        <div class="status-value up">disponible</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2>Profil</h2>
+    </div>
+    <div class="about-text">
+      <p>
+        Le SISR m'attire pour son côté concret : configurer un réseau, sécuriser un accès, maintenir un serveur en état de marche.
+        C'est un domaine où chaque décision a un effet visible et où la rigueur compte autant que la curiosité.
+      </p>
+      <p>
+        À côté de la partie réseaux et systèmes, j'ai développé un intérêt pour le web — j'ai eu l'occasion de créer un site
+        de bout en bout pour un client réel pendant mon stage, ce qui m'a appris à traduire un besoin concret en solution technique.
+      </p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2>Compétences</h2>
+    </div>
+    <div class="skill-groups">
+      <div>
+        <div class="skill-group-title">réseaux &amp; sécurité</div>
+        <div class="tag-row">
+          <span class="tag">Cisco</span>
+          <span class="tag">TCP/IP</span>
+          <span class="tag">Pare-feu</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">systèmes</div>
+        <div class="tag-row">
+          <span class="tag">Windows Server</span>
+          <span class="tag">Linux</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">développement web</div>
+        <div class="tag-row">
+          <span class="tag">HTML</span>
+          <span class="tag">PHP</span>
+          <span class="tag">WordPress</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2>Projets</h2>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <div class="project-name">Site web pour un café</div>
+        <div class="project-tag">stage · 5 semaines</div>
+      </div>
+      <p class="project-desc">
+        Conception et réalisation d'un site vitrine complet pour un café, de la prise de besoin auprès du client
+        jusqu'à la mise en ligne.
+      </p>
+      <div class="project-stack"><span>HTML</span><span>PHP</span></div>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <div class="project-name">World Tour</div>
+        <div class="project-tag">projet scolaire</div>
+      </div>
+      <p class="project-desc">
+        Création d'un site de type carnet de voyage sur WordPress, avec mise en place des pages, de la navigation
+        et de la personnalisation du thème.
+      </p>
+      <div class="project-stack"><span>WordPress</span></div>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <div class="project-name">Générateur de devis</div>
+        <div class="project-tag">projet scolaire</div>
+      </div>
+      <p class="project-desc">
+        Développement d'un outil permettant de générer des devis, pensé pour être simple à utiliser et fiable dans les calculs.
+      </p>
+      <div class="project-stack"><span>PHP</span></div>
+    </div>
+  </section>
+
+  <section id="stage">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2>Expérience</h2>
+    </div>
+    <div class="stage-card">
+      <div class="stage-title">Stage — création de site web</div>
+      <div class="stage-meta">Café · 5 semaines</div>
+      <p>
+        Immersion complète dans un projet client réel : échanges avec le gérant pour définir ses besoins,
+        conception du site et livraison d'une solution adaptée à son activité.
+      </p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2>Contact</h2>
+    </div>
+    <div class="contact-list">
+      <div class="contact-row">
+        <span class="k">email</span>
+        <a class="v" href="mailto:ayoubmouslimov@gmail.com">ayoubmouslimov@gmail.com</a>
+      </div>
+      <div class="contact-row">
+        <span class="k">téléphone</span>
+        <span class="v">06 98 56 19 38</span>
+      </div>
+      <div class="contact-row">
+        <span class="k">github</span>
+        <a class="v" href="https://github.com/ayoubmouslimov" target="_blank" rel="noopener">github.com/ayoubmouslimov</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Mouslimov Ayoub — BTS SIO SISR
+</footer>
+
+</body>
+</html>
